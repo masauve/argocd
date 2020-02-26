@@ -1,0 +1,75 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  creationTimestamp: '2020-02-26T11:28:22Z'
+  generation: 1
+  labels:
+    machine.openshift.io/cluster-api-cluster: cl1-stppw
+  name: cl1-stppw-worker-ca-central-1b
+  namespace: openshift-machine-api
+  resourceVersion: '12587'
+  selfLink: >-
+    /apis/machine.openshift.io/v1beta1/namespaces/openshift-machine-api/machinesets/cl1-stppw-worker-ca-central-1b
+  uid: 521794cd-6f9e-4225-8d33-dd1af8145990
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: cl1-stppw
+      machine.openshift.io/cluster-api-machineset: cl1-stppw-worker-ca-central-1b
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        machine.openshift.io/cluster-api-cluster: cl1-stppw
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+        machine.openshift.io/cluster-api-machineset: cl1-stppw-worker-ca-central-1b
+    spec:
+      metadata:
+        creationTimestamp: null
+      providerSpec:
+        value:
+          userDataSecret:
+            name: worker-user-data
+          placement:
+            availabilityZone: ca-central-1b
+            region: ca-central-1
+          credentialsSecret:
+            name: aws-cloud-credentials
+          instanceType: m4.2xlarge
+          metadata:
+            creationTimestamp: null
+          publicIp: null
+          blockDevices:
+            - ebs:
+                iops: 0
+                volumeSize: 120
+                volumeType: gp2
+          securityGroups:
+            - filters:
+                - name: 'tag:Name'
+                  values:
+                    - cl1-stppw-worker-sg
+          kind: AWSMachineProviderConfig
+          tags:
+            - name: kubernetes.io/cluster/cl1-stppw
+              value: owned
+          deviceIndex: 0
+          ami:
+            id: ami-01b36924502c16d0a
+          subnet:
+            filters:
+              - name: 'tag:Name'
+                values:
+                  - cl1-stppw-private-ca-central-1b
+          apiVersion: awsproviderconfig.openshift.io/v1beta1
+          iamInstanceProfile:
+            id: cl1-stppw-worker-profile
+status:
+  availableReplicas: 1
+  fullyLabeledReplicas: 1
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 1
+
