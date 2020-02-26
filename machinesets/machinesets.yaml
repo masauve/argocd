@@ -1,6 +1,9 @@
 apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=false
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
   creationTimestamp: '2020-02-26T11:28:22Z'
   generation: 1
   labels:
