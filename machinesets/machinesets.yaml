@@ -40,7 +40,7 @@ spec:
             region: ca-central-1
           credentialsSecret:
             name: aws-cloud-credentials
-          instanceType: m4.2xlarge
+          instanceType: m5.4xlarge
           metadata:
             creationTimestamp: null
           publicIp: null
