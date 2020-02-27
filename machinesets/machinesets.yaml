@@ -1,26 +1,21 @@
 apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
-  annotations:
-    argocd.argoproj.io/sync-options: Prune=false
-    argocd.argoproj.io/compare-options: IgnoreExtraneous
   labels:
     machine.openshift.io/cluster-api-cluster: cl1-stppw
   name: cl1-stppw-worker-ca-central-1b
   namespace: openshift-machine-api
-  resourceVersion: '12587'
   selfLink: >-
     /apis/machine.openshift.io/v1beta1/namespaces/openshift-machine-api/machinesets/cl1-stppw-worker-ca-central-1b
   uid: 521794cd-6f9e-4225-8d33-dd1af8145990
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: cl1-stppw
       machine.openshift.io/cluster-api-machineset: cl1-stppw-worker-ca-central-1b
   template:
     metadata:
-      creationTimestamp: null
       labels:
         machine.openshift.io/cluster-api-cluster: cl1-stppw
         machine.openshift.io/cluster-api-machine-role: worker
@@ -67,10 +62,4 @@ spec:
           apiVersion: awsproviderconfig.openshift.io/v1beta1
           iamInstanceProfile:
             id: cl1-stppw-worker-profile
-status:
-  availableReplicas: 1
-  fullyLabeledReplicas: 1
-  observedGeneration: 1
-  readyReplicas: 1
-  replicas: 1
 
